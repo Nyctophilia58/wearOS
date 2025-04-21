@@ -15,6 +15,15 @@ A simple, elegant and customizable Wear OS application built with Flutter. This 
 - 🧭 Optimized for round watch screens
 - 🪄 Minimal & intuitive UI for small screens
 
+## 🖼️ Demo
+
+| Home | Customization Prompt |
+|------|----------------------|
+| ![](assets/screenshots/homepage.png) | ![](assets/screenshots/customize.png) | 
+
+| Swipable Pages |
+|----------------|
+![](assets/screenshots/background.png) |
 
 ## 🚀 Getting Started
 
