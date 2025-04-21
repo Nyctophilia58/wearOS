@@ -1,16 +1,32 @@
-# wearos
+# 🕒 Wear OS – Customizable Watchface App
 
-A new Flutter project.
+A simple, elegant and customizable Wear OS application built with Flutter. This app demonstrates core Wear OS functionality including round screen support, rotary input, and responsive design tailored for smartwatches.
 
-## Getting Started
+## ✨ Features
 
-This project is a starting point for a Flutter application.
+- 🏠 **Homepage** with long-press detection
+- 🎨 **Customization Mode**: Choose your preferences
+  - Background Color
+  - Language
+  - Font Color
+  - Complication Color
+- ↔️ Swipeable customization pages
+- ↩️ Swipe right to go back to the previous screen
+- 🧭 Optimized for round watch screens
+- 🪄 Minimal & intuitive UI for small screens
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🚀 Getting Started
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Prerequisites
+
+- Flutter 3.10+
+- Android Studio or VS Code
+- Android SDK with Wear OS Emulator or physical watch
+
+### Installation
+
+```bash
+git clone https://github.com/Nowshin58/wearOS.git
+cd wearOS
+flutter pub get
