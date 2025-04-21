@@ -11,12 +11,13 @@ class CustomizeScreen extends StatelessWidget{
     final settings = Provider.of<SettingsProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.grey[800],
       body: Center(
         child: Stack(
           children: [
             Container(
-              width: 170,
-              height: 190,
+              width: 150,
+              height: 200,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
                 color: settings.backgroundColor,
@@ -64,7 +65,7 @@ class CustomizeScreen extends StatelessWidget{
                         settings.isEnglish ? '10' : '১০',
                         style: TextStyle(
                           color: settings.fontColor,
-                          fontSize: 45,
+                          fontSize: 40,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -80,7 +81,7 @@ class CustomizeScreen extends StatelessWidget{
                         settings.isEnglish ? '00' : '০০',
                         style: TextStyle(
                           color: settings.fontColor,
-                          fontSize: 45,
+                          fontSize: 40,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -130,8 +131,8 @@ class CustomizeScreen extends StatelessWidget{
               ),
             ),
             Positioned(
-              left: 50,
-              bottom: -18,
+              left: 40,
+              bottom: -10,
               child: TextButton(
                 // Navigate to the settings page
                 onPressed: () => Navigator.push(

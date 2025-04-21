@@ -4,6 +4,7 @@ import 'package:wearos/models/settings_provider.dart';
 import 'package:wearos/utilities/utils.dart';
 import '../models/color_options.dart';
 
+
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
@@ -18,7 +19,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Map<String, String> names = {
     "BackGround" : "ব্যাকগ্রাউন্ড রং",
     "Language" : "ভাষা",
-    "Font" : "ফন্ট",
     "Font Color" : "ফন্ট রং",
     "Complication Color" : "কমপ্লিকেশন রং",
   };
@@ -28,132 +28,125 @@ class _SettingsScreenState extends State<SettingsScreen> {
     final settings = Provider.of<SettingsProvider>(context);
 
     return Scaffold(
+      backgroundColor: Colors.grey[800],
       body: Center(
         child: Stack(
           children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                // LEFT SLOT: Show Color Picker (Background) or leave empty
+                (_currentPageIndex == 0)
+                    ? SizedBox(
+                  width: 10,
+                  child: ColorOptionPage(
+                    onColorSelected: (color) {
+                      settings.setBackgroundColor(color);
+                    },
+                    selectedColor: settings.backgroundColor,
+                  ),
+                )
+                : (_currentPageIndex == 1)
+                    ? SizedBox(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      GestureDetector(
+                        onTap: () => settings.setLanguage(false),
+                        child: Text(
+                          'Ban',
+                          style: TextStyle(
+                            color: settings.isEnglish ? Colors.white : Colors.greenAccent,
+                            fontSize: 10,
+                            fontWeight: settings.isEnglish ? FontWeight.normal : FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+                  : const SizedBox(width: 10), // keep layout aligned
+
+                const SizedBox(width: 3), // keep layout aligned
+
+                // CENTER: PageView
+                SizedBox(
+                  width: 150,
+                  height: 150,
+                  child: PageView(
+                    controller: _pageController,
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (int index) {
+                      setState(() {
+                        _currentPageIndex = index;
+                      });
+                    },
+                    children: [
+                      _buildComplicationPage("BackGround", 0, settings),
+                      _buildComplicationPage("Language", 1, settings),
+                      _buildComplicationPage("Font Color", 2, settings),
+                      _buildComplicationPage("Complication Color", 3, settings),
+                    ],
+                  ),
+                ),
+
+
+                const SizedBox(width: 3), // keep layout aligned
+
+                // RIGHT SLOT: Language toggle or color options or empty
+                (_currentPageIndex == 1)
+                  ? SizedBox(
+                    child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
+                            onTap: () => settings.setLanguage(true),
+                            child: Text(
+                              'Eng',
+                              style: TextStyle(
+                                color: settings.isEnglish ? Colors.greenAccent : Colors.white,
+                                fontSize: 10,
+                                fontWeight: settings.isEnglish ? FontWeight.bold : FontWeight.normal,
+                              ),
+                            ),
+                        ),
+                      ],
+                    ),
+                  )
+                    : (_currentPageIndex == 2)
+                    ? SizedBox(
+                  width: 10,
+                  child: ColorOptionPage(
+                    onColorSelected: (color) {
+                      settings.setFontColor(color);
+                    },
+                    selectedColor: settings.fontColor,
+                  ),
+                )
+                    : (_currentPageIndex == 3)
+                    ? SizedBox(
+                  width: 10,
+                  child: ColorOptionPage(
+                    onColorSelected: (color) {
+                      settings.setComplicationColor(color);
+                    },
+                    selectedColor: settings.complicationColor,
+                  ),
+                )
+                    : const SizedBox(width: 10), // placeholder if none
+              ],
+            ),
+
             SizedBox(
-              height: 35,
+              height: 27,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   _buildComplicationName("BackGround", 0, settings),
                   _buildComplicationName("Language", 1, settings),
-                  _buildComplicationName("Font", 2, settings),
-                  _buildComplicationName("Font Color", 3, settings),
-                  _buildComplicationName("Complication Color", 4, settings),
-
-                ],
-              ),
-            ),
-
-            Positioned(
-              child: Stack(
-                children: [
-                  Align(
-                    alignment: Alignment.center,
-                    child: SizedBox(
-                      width: 200,
-                      height: 200,
-                      child: PageView(
-                        controller: _pageController,
-                        onPageChanged: (int index) {
-                          setState(() {
-                            _currentPageIndex = index;
-                          });
-                        },
-                        children: [
-                          _buildComplicationPage("BackGround", 0, settings),
-                          _buildComplicationPage("Language", 1, settings),
-                          _buildComplicationPage("Font", 2, settings),
-                          _buildComplicationPage("Font Color", 3, settings),
-                          _buildComplicationPage("Complication Color", 4, settings),
-                        ],
-                      ),
-                    ),
-                  ),
-
-                  if (_currentPageIndex == 0) ...[
-                    Align(
-                        alignment: Alignment.centerLeft,
-                        child: SizedBox(
-                          width: 30,
-                          child: ColorOptionPage(
-                            onColorSelected: (color) {
-                              settings.setBackgroundColor(color);
-                            },
-                          ),
-                        )
-                    ),
-                  ],
-
-                  if (_currentPageIndex == 1) ...[
-                    Positioned(
-                      top: 105,
-                      left: 5,
-                      // alignment: Alignment.centerLeft,
-                      child: GestureDetector(
-                          onTap: (){
-                            settings.setLanguage(false);
-                          },
-                          child: Text(
-                            'Ban',
-                            style: TextStyle(
-                              color: settings.isEnglish ? Colors.white : Colors.greenAccent,
-                              fontSize: 10,
-                              fontWeight: settings.isEnglish ? FontWeight.normal : FontWeight.bold,
-                            ),
-                          ),
-                      ),
-                    ),
-
-                    Positioned(
-                      top: 105,
-                      right: 5,
-                      child: GestureDetector(
-                          onTap: (){
-                            settings.setLanguage(true);
-                          },
-                          child: Text(
-                            'Eng',
-                            style: TextStyle(
-                              color: settings.isEnglish? Colors.greenAccent : Colors.white,
-                              fontSize: 10,
-                              fontWeight: settings.isEnglish ? FontWeight.bold : FontWeight.normal,
-
-                            ),
-                          ),
-                        ),
-                      ),
-
-                  ],
-
-                  if(_currentPageIndex == 3) ...[
-                    Align(
-                      alignment: Alignment.centerRight,
-                      child: SizedBox(
-                        width: 30,
-                        child: ColorOptionPage(
-                          onColorSelected: (color) {
-                            settings.setFontColor(color);
-                          },
-                        ),
-                      )
-                    ),
-                  ],
-
-                  if (_currentPageIndex == 4)...[
-                    Align(
-                        alignment: Alignment.centerRight,
-                        child: SizedBox(
-                          width: 30,
-                          child: ColorOptionPage(
-                            onColorSelected: (color) {
-                              settings.setComplicationColor(color);
-                            },
-                          ),
-                        )
-                    ),
-                  ],
+                  _buildComplicationName("Font Color", 2, settings),
+                  _buildComplicationName("Complication Color", 3, settings),
                 ],
               ),
             ),
@@ -184,120 +177,120 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget _buildComplicationPage(String content, int pageIndex, settings) {
     return Center(
       child: Container(
-        width: 170,
-        height: 170,
-        decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          color: settings.backgroundColor, // Use the selected color for the watch face
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            // Left part: Weather info
-            Expanded(
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: settings.complicationColor,
-                    width: 3,
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(
-                      Icons.wb_cloudy,
-                      size: 10,
+          width: 150,
+          height: 150,
+          decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: settings.backgroundColor, // Use the selected color for the watch face
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              // Left part: Weather info
+              Expanded(
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
                       color: settings.complicationColor,
+                      width: 3,
                     ),
-                    Text(
-                      settings.isEnglish ? '17°C' : '${convertText('17', settings.isEnglish)}°সে.',
-                      style: TextStyle(
-                        color: settings.fontColor,
-                        fontSize: 10,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
-            // Center part: Time and Date
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  settings.isEnglish ? '10' : convertText('10', settings.isEnglish),
-                  style: TextStyle(
-                    color: settings.fontColor,
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
                   ),
-                ),
-                Text(
-                  settings.isEnglish ? '34' : convertText('34', settings.isEnglish),
-                  style: TextStyle(
-                    color: settings.fontColor,
-                    fontSize: 8,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  settings.isEnglish ? '00' : convertText('00', settings.isEnglish),
-                  style: TextStyle(
-                    color: settings.fontColor,
-                    fontSize: 45,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                Text(
-                  settings.isEnglish ? 'AM' : getAmPm('AM', settings.isEnglish),
-                  style: TextStyle(
-                    color: settings.fontColor,
-                    fontSize: 8
-                  ),
-                ),
-              ],
-            ),
-            // Right part: Settings button and additional info
-            Expanded(
-              child: Container(
-                width: 40,
-                height: 40,
-                decoration: BoxDecoration(
-                  shape: BoxShape.circle,
-                  border: Border.all(
-                    color: settings.complicationColor,
-                    width: 3,
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    Text(
-                      settings.isEnglish ? 'Sun' : 'রবি',
-                      style: TextStyle(
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.wb_cloudy,
+                        size: 10,
                         color: settings.complicationColor,
-                        fontSize: 10,
                       ),
-                    ),
-                    Text(
-                      settings.isEnglish ? '14 Mar' : '১৪ মার্চ',
-                      style: TextStyle(
-                        color: settings.fontColor,
-                        fontSize: 8
+                      Text(
+                        settings.isEnglish ? '17°C' : '${convertText('17', settings.isEnglish)}°সে.',
+                        style: TextStyle(
+                          color: settings.fontColor,
+                          fontSize: 10,
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
-          ],
+              // Center part: Time and Date
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    settings.isEnglish ? '10' : convertText('10', settings.isEnglish),
+                    style: TextStyle(
+                      color: settings.fontColor,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    settings.isEnglish ? '34' : convertText('34', settings.isEnglish),
+                    style: TextStyle(
+                      color: settings.fontColor,
+                      fontSize: 8,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    settings.isEnglish ? '00' : convertText('00', settings.isEnglish),
+                    style: TextStyle(
+                      color: settings.fontColor,
+                      fontSize: 40,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Text(
+                    settings.isEnglish ? 'AM' : getAmPm('AM', settings.isEnglish),
+                    style: TextStyle(
+                      color: settings.fontColor,
+                      fontSize: 8
+                    ),
+                  ),
+                ],
+              ),
+              // Right part: Settings button and additional info
+              Expanded(
+                child: Container(
+                  width: 40,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    border: Border.all(
+                      color: settings.complicationColor,
+                      width: 3,
+                    ),
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Text(
+                        settings.isEnglish ? 'Sun' : 'রবি',
+                        style: TextStyle(
+                          color: settings.complicationColor,
+                          fontSize: 10,
+                        ),
+                      ),
+                      Text(
+                        settings.isEnglish ? '14 Mar' : '১৪ মার্চ',
+                        style: TextStyle(
+                          color: settings.fontColor,
+                          fontSize: 8
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
-      ),
     );
   }
 }

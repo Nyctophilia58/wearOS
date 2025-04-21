@@ -94,8 +94,8 @@ class _WatchFaceState extends State<WatchFace> {
                   // Left part: Weather info
                   Expanded(
                     child: Container(
-                      width: 60,
-                      height: 60,
+                      width: 50,
+                      height: 50,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: settings.backgroundColor,
@@ -116,7 +116,7 @@ class _WatchFaceState extends State<WatchFace> {
                             convertText(temperature, settings.isEnglish),
                             style: TextStyle(
                               color: settings.fontColor,
-                              fontSize: 15,
+                              fontSize: 12,
                             ),
                           ),
                         ],
@@ -131,7 +131,7 @@ class _WatchFaceState extends State<WatchFace> {
                         convertText(formattedHour, settings.isEnglish),
                         style: TextStyle(
                           color: settings.fontColor,
-                          fontSize: 65,
+                          fontSize: 55,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -147,7 +147,7 @@ class _WatchFaceState extends State<WatchFace> {
                         convertText(formattedMinute, settings.isEnglish),
                         style: TextStyle(
                           color: settings.fontColor,
-                          fontSize: 65,
+                          fontSize: 55,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -156,7 +156,7 @@ class _WatchFaceState extends State<WatchFace> {
                         settings.is24HourFormat ? '' : formatAmPm,
                         style: TextStyle(
                           color: settings.fontColor,
-                          fontSize: 12
+                          fontSize: 10
                         ),
                       ),
                     ],
@@ -164,8 +164,8 @@ class _WatchFaceState extends State<WatchFace> {
                   // Right part: Settings button and additional info
                   Expanded(
                     child: Container(
-                      width: 60,
-                      height: 60,
+                      width: 50,
+                      height: 50,
                       decoration: BoxDecoration(
                         shape: BoxShape.circle,
                         color: settings.backgroundColor,
@@ -182,9 +182,9 @@ class _WatchFaceState extends State<WatchFace> {
                             dayOfWeek,
                             style: TextStyle(
                               color: (dayOfWeek == 'Fri' || dayOfWeek == 'Sat' || dayOfWeek == 'শুক্র' || dayOfWeek == 'শনি')
-                                  ? Colors.red[200]
+                                  ? Colors.red[900]
                                   : settings.complicationColor,
-                              fontSize: 16,
+                              fontSize: 12,
                             ),
                           ),
                           Text(

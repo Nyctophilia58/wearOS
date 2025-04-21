@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:wearos/screens/watchface.dart';
 import 'package:wearos/screens/customize.dart';  // Add this import
-import 'package:flutter/services.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -12,7 +11,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   void _navigateToCustomizeScreen() {
-    HapticFeedback.vibrate();
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => const CustomizeScreen()),

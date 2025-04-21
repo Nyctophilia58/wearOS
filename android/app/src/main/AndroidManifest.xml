@@ -4,6 +4,7 @@
     <application
         android:label="wearos"
         android:name="${applicationName}"
+        android:theme="@style/AppTheme"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
