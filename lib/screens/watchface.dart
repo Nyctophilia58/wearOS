@@ -80,126 +80,116 @@ class _WatchFaceState extends State<WatchFace> {
 
     return Scaffold(
       backgroundColor: settings.backgroundColor,
-      body: AmbientMode(
-        builder: (context, mode, child) {
-          if (mode == WearMode.ambient) {
-            return const Center(
-              child: FlutterLogo(size: 200.0),
-            );
-          } else {
-            return Center(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  // Left part: Weather info
-                  Expanded(
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: settings.backgroundColor,
-                        border: Border.all(
-                          color: settings.complicationColor,
-                          width: 3,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            weatherIcon,
-                            size: 15,
-                            color: settings.complicationColor,
-                          ),
-                          Text(
-                            convertText(temperature, settings.isEnglish),
-                            style: TextStyle(
-                              color: settings.fontColor,
-                              fontSize: 12,
-                            ),
-                          ),
-                        ],
+      body: Center(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Left part: Weather info
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: settings.backgroundColor,
+                  border: Border.all(
+                    color: settings.complicationColor,
+                    width: 3,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      weatherIcon,
+                      size: 15,
+                      color: settings.complicationColor,
+                    ),
+                    Text(
+                      convertText(temperature, settings.isEnglish),
+                      style: TextStyle(
+                        color: settings.fontColor,
+                        fontSize: 12,
                       ),
                     ),
-                  ),
-                  // Center part: Time and Date
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        convertText(formattedHour, settings.isEnglish),
-                        style: TextStyle(
-                          color: settings.fontColor,
-                          fontSize: 55,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        convertText(formattedSecond, settings.isEnglish),
-                        style: TextStyle(
-                          color: settings.fontColor,
-                          fontSize: 10,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                      Text(
-                        convertText(formattedMinute, settings.isEnglish),
-                        style: TextStyle(
-                          color: settings.fontColor,
-                          fontSize: 55,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-
-                      Text(
-                        settings.is24HourFormat ? '' : formatAmPm,
-                        style: TextStyle(
-                          color: settings.fontColor,
-                          fontSize: 10
-                        ),
-                      ),
-                    ],
-                  ),
-                  // Right part: Settings button and additional info
-                  Expanded(
-                    child: Container(
-                      width: 50,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: settings.backgroundColor,
-                        border: Border.all(
-                          color: settings.complicationColor,
-                          width: 3,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            dayOfWeek,
-                            style: TextStyle(
-                              color: (dayOfWeek == 'Fri' || dayOfWeek == 'Sat' || dayOfWeek == 'শুক্র' || dayOfWeek == 'শনি')
-                                  ? Colors.red[900]
-                                  : settings.complicationColor,
-                              fontSize: 12,
-                            ),
-                          ),
-                          Text(
-                            '${convertText(date, settings.isEnglish)} $month',
-                            style: TextStyle(color: settings.fontColor, fontSize: 12),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                  ],
+                ),
               ),
-            );
-          }
-        },
+            ),
+            // Center part: Time and Date
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  convertText(formattedHour, settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 55,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  convertText(formattedSecond, settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 10,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  convertText(formattedMinute, settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 55,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+
+                Text(
+                  settings.is24HourFormat ? '' : formatAmPm,
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 10
+                  ),
+                ),
+              ],
+            ),
+            // Right part: Settings button and additional info
+            Expanded(
+              child: Container(
+                width: 50,
+                height: 50,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: settings.backgroundColor,
+                  border: Border.all(
+                    color: settings.complicationColor,
+                    width: 3,
+                  ),
+                ),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text(
+                      dayOfWeek,
+                      style: TextStyle(
+                        color: (dayOfWeek == 'Fri' || dayOfWeek == 'Sat' || dayOfWeek == 'শুক্র' || dayOfWeek == 'শনি')
+                            ? Colors.red[900]
+                            : settings.complicationColor,
+                        fontSize: 12,
+                      ),
+                    ),
+                    Text(
+                      '${convertText(date, settings.isEnglish)} $month',
+                      style: TextStyle(color: settings.fontColor, fontSize: 12),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

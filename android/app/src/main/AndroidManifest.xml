@@ -2,9 +2,9 @@
     <uses-feature android:name="android.hardware.type.watch" />
 
     <application
-        android:label="wearos"
+        android:label="Wear OS"
         android:name="${applicationName}"
-        android:theme="@style/AppTheme"
+        android:theme="@style/LaunchTheme"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
