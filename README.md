@@ -22,8 +22,8 @@ A simple, elegant and customizable Wear OS application built with Flutter. This 
 | ![](assets/screenshots/homepage.png) | ![](assets/screenshots/customize.png) | 
 
 | Swipable Pages |
-|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-![](assets/screenshots/background.png) | ![](assets/screenshots/language.png) | ![](assets/screenshots/font_color.png) | ![](assets/screenshots/complication_color.png) |
+|----------------|
+![](assets/screenshots/background.png)  ![](assets/screenshots/language.png) ![](assets/screenshots/font_color.png) ![](assets/screenshots/complication_color.png) |
 
 ## 🚀 Getting Started
 
