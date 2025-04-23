@@ -18,13 +18,14 @@ A simple, elegant and customizable Wear OS application built with Flutter. This 
 
 ## 🖼️ Demo
 
-| Home | Customization Prompt |
-|------|----------------------|
-| ![](assets/screenshots/homepage.png) | ![](assets/screenshots/customize.png) | 
+| Home | WatchFace | Customization Prompt |
+|------|-----------|----------------------|
+| ![](assets/screenshots/logo.png) | ![](assets/screenshots/watchface.png) | ![](assets/screenshots/customize.png) | 
 
 | Swipable Pages |
-|--------------|
-| ![](assets/screenshots/background.png)   ![](assets/screenshots/language.png)   ![](assets/screenshots/font_color.png)   ![](assets/screenshots/complication_color.png) |
+|----------------|
+| ![](assets/screenshots/background.png)    ![](assets/screenshots/language.png)    |
+| ![](assets/screenshots/font_color.png)   ![](assets/screenshots/complication.png) |
 
 
 ## 🚀 Getting Started
