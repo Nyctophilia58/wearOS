@@ -21,6 +21,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
     "Language" : "ভাষা",
     "Font Color" : "ফন্ট রং",
     "Complication Color" : "কমপ্লিকেশন রং",
+    "Show Battery" : ""
   };
 
   @override
@@ -177,28 +178,21 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Widget _buildComplicationPage(String content, int pageIndex, settings) {
     return Center(
       child: Container(
-          width: 150,
-          height: 150,
-          decoration: BoxDecoration(
-            shape: BoxShape.circle,
-            color: settings.backgroundColor, // Use the selected color for the watch face
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              // Left part: Weather info
-              Expanded(
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: settings.complicationColor,
-                      width: 3,
-                    ),
-                  ),
-                  child: Column(
+        width: 150,
+        height: 150,
+        decoration: BoxDecoration(
+          shape: BoxShape.circle,
+          color: settings.backgroundColor, // Use the selected color for the watch face
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            // Left part: Weather info
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Icon(
@@ -207,7 +201,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         color: settings.complicationColor,
                       ),
                       Text(
-                        settings.isEnglish ? '17°C' : '${convertText('17', settings.isEnglish)}°সে.',
+                        settings.isEnglish ? '17°C' : '১৭°সে.',
                         style: TextStyle(
                           color: settings.fontColor,
                           fontSize: 10,
@@ -215,58 +209,74 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       ),
                     ],
                   ),
-                ),
+
+                  const SizedBox(height: 20),
+
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      // Add battery icon here
+                      Icon(
+                        Icons.battery_3_bar,
+                        size: 12,
+                        color: settings.complicationColor,
+                      ),
+                      Text(
+                        settings.isEnglish ? '68%' : '৬৮%',
+                        style: TextStyle(
+                          color: settings.fontColor,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                ]
               ),
-              // Center part: Time and Date
-              Column(
+            ),
+            // Center part: Time and Date
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  settings.isEnglish ? '10' : convertText('10', settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  settings.isEnglish ? '34' : convertText('34', settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 8,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  settings.isEnglish ? '00' : convertText('00', settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 40,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  settings.isEnglish ? 'AM' : getAmPm('AM', settings.isEnglish),
+                  style: TextStyle(
+                    color: settings.fontColor,
+                    fontSize: 8
+                  ),
+                ),
+              ],
+            ),
+            // Right part: Settings button and additional info
+            Expanded(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    settings.isEnglish ? '10' : convertText('10', settings.isEnglish),
-                    style: TextStyle(
-                      color: settings.fontColor,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    settings.isEnglish ? '34' : convertText('34', settings.isEnglish),
-                    style: TextStyle(
-                      color: settings.fontColor,
-                      fontSize: 8,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    settings.isEnglish ? '00' : convertText('00', settings.isEnglish),
-                    style: TextStyle(
-                      color: settings.fontColor,
-                      fontSize: 40,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
-                  Text(
-                    settings.isEnglish ? 'AM' : getAmPm('AM', settings.isEnglish),
-                    style: TextStyle(
-                      color: settings.fontColor,
-                      fontSize: 8
-                    ),
-                  ),
-                ],
-              ),
-              // Right part: Settings button and additional info
-              Expanded(
-                child: Container(
-                  width: 40,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: settings.complicationColor,
-                      width: 3,
-                    ),
-                  ),
-                  child: Column(
+                  Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -281,16 +291,39 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         settings.isEnglish ? '14 Mar' : '১৪ মার্চ',
                         style: TextStyle(
                           color: settings.fontColor,
-                          fontSize: 8
+                          fontSize: 10,
                         ),
                       ),
                     ],
                   ),
-                ),
+
+                  const SizedBox(height: 20),
+
+                  Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      Icon(
+                        // heart rate icon
+                        Icons.directions_walk,
+                        size: 12,
+                        color: settings.complicationColor,
+                      ),
+                      Text(
+                        // heart rate value
+                        settings.isEnglish ? '2845' : '২৮৪৫',
+                        style: TextStyle(
+                          color: settings.fontColor,
+                          fontSize: 10,
+                        ),
+                      ),
+                    ],
+                  ),
+                ]
               ),
-            ],
-          ),
+            ),
+          ],
         ),
+      ),
     );
   }
 }

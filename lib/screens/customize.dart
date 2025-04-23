@@ -27,36 +27,52 @@ class CustomizeScreen extends StatelessWidget{
                 children: [
                   // Left part: Weather info
                   Expanded(
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: settings.backgroundColor,
-                        border: Border.all(
-                          color: settings.complicationColor,
-                          width: 3,
-                        ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Icon(
-                            Icons.wb_cloudy,
-                            size: 10,
-                            color: settings.complicationColor,
-                          ),
-                          Text(
-                            settings.isEnglish ? '17°C' : '১৭°সে.',
-                            style: TextStyle(
-                              color: settings.fontColor,
-                              fontSize: 10,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.wb_cloudy,
+                              size: 10,
+                              color: settings.complicationColor,
                             ),
-                          ),
-                        ],
-                      ),
+                            Text(
+                              settings.isEnglish ? '17°C' : '১৭°সে.',
+                              style: TextStyle(
+                                color: settings.fontColor,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+
+                        const SizedBox(height: 20),
+
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            // Add battery icon here
+                            Icon(
+                              Icons.battery_3_bar,
+                              size: 12,
+                              color: settings.complicationColor,
+                            ),
+                            Text(
+                              settings.isEnglish ? '68%' : '৬৮%',
+                              style: TextStyle(
+                                color: settings.fontColor,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ]
                     ),
                   ),
+
                   // Center part: Time and Date
                   Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -92,39 +108,55 @@ class CustomizeScreen extends StatelessWidget{
                       ),
                     ],
                   ),
+
                   // Right part: Settings button and additional info
                   Expanded(
-                    child: Container(
-                      width: 40,
-                      height: 40,
-                      decoration: BoxDecoration(
-                        shape: BoxShape.circle,
-                        color: settings.backgroundColor,
-                        border: Border.all(
-                          color: settings.complicationColor,
-                          width: 3,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            Text(
+                              settings.isEnglish ? 'Sun' : 'রবি',
+                              style: TextStyle(
+                                color: settings.complicationColor,
+                                fontSize: 10,
+                              ),
+                            ),
+                            Text(
+                              settings.isEnglish ? '14 Mar' : '১৪ মার্চ',
+                              style: TextStyle(
+                                color: settings.fontColor,
+                                fontSize: 10,
+                              ),
+                            ),
+                          ],
                         ),
-                      ),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          Text(
-                            settings.isEnglish ? 'Sun' : 'রবি',
-                            style: TextStyle(
+
+                        const SizedBox(height: 20),
+
+                        Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Icon(
+                              // heart rate icon
+                              Icons.directions_walk,
+                              size: 12,
                               color: settings.complicationColor,
-                              fontSize: 10,
                             ),
-                          ),
-                          Text(
-                            settings.isEnglish ? '14 Mar' : '১৪ মার্চ',
-                            style: TextStyle(
-                              color: settings.fontColor,
-                              fontSize: 8,
+                            Text(
+                              // heart rate value
+                              settings.isEnglish ? '2845' : '২৮৪৫',
+                              style: TextStyle(
+                                color: settings.fontColor,
+                                fontSize: 10,
+                              ),
                             ),
-                          ),
-                        ],
-                      ),
+                          ],
+                        ),
+                      ]
                     ),
                   ),
                 ],
