@@ -164,7 +164,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
       return Text(
         settings.isEnglish ? name : (names[name] ?? name),
         style: TextStyle(
-          color: Colors.blueGrey, // Use the selected color for the watch face
+          color: Colors.yellow[900],
           fontSize: 10,
           fontWeight: FontWeight.bold,
         ),
