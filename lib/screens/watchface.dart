@@ -287,13 +287,11 @@ class _WatchFaceState extends State<WatchFace> {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Icon(
-                        // heart rate icon
                         Icons.directions_walk,
                         size: 15,
                         color: settings.complicationColor,
                       ),
                       Text(
-                        // heart rate value
                         convertText(_steps, settings.isEnglish),
                         style: TextStyle(
                           color: settings.fontColor,
