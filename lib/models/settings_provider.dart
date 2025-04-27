@@ -5,7 +5,6 @@ class SettingsProvider extends ChangeNotifier {
   bool _isEnglish = true;
   bool is24HourFormat = false;
   String selectedTimezone = 'Asia/Dhaka';
-  String selectedFont = 'assets/fonts/Allura-Regular.ttf';
 
   Color _backgroundColor = Colors.black;
   Color _complicationColor = Colors.white;
@@ -15,7 +14,6 @@ class SettingsProvider extends ChangeNotifier {
   Color get backgroundColor => _backgroundColor;
   Color get complicationColor => _complicationColor;
   Color get fontColor => _fontColor;
-  String get font => selectedFont;
   String get timezone => selectedTimezone;
   bool get is24Hour => is24HourFormat;
 
@@ -37,7 +35,6 @@ class SettingsProvider extends ChangeNotifier {
     _backgroundColor = Color(bgColorValue);
     _complicationColor = Color(compColorValue);
     _fontColor = Color(fontColorValue);
-    selectedFont = prefs.getString('selectedFont') ?? 'assets/fonts/Allura-Regular.ttf';
 
     notifyListeners();
   }
@@ -50,7 +47,6 @@ class SettingsProvider extends ChangeNotifier {
     prefs.setInt('backgroundColor', _backgroundColor.value);
     prefs.setInt('complicationColor', _complicationColor.value);
     prefs.setInt('fontColor', _fontColor.value);
-    prefs.setString('selectedFont', selectedFont);
   }
 
   void toggleLanguage() {
@@ -85,12 +81,6 @@ class SettingsProvider extends ChangeNotifier {
 
   void setComplicationColor(Color color) {
     _complicationColor = color;
-    _saveSettings();
-    notifyListeners();
-  }
-
-  void setFont(String font) {
-    selectedFont = font;
     _saveSettings();
     notifyListeners();
   }
