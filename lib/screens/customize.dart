@@ -179,7 +179,7 @@ class CustomizeScreen extends StatelessWidget{
                 child: Text(
                   settings.isEnglish ? 'Customize' : 'কাস্টোমাইজ',
                   style: TextStyle(
-                    color: Colors.blue[900],
+                    color: Colors.yellow[900],
                     fontSize: 10,
                   ),
                 ),

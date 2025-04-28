@@ -46,6 +46,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       settings.setBackgroundColor(color);
                     },
                     selectedColor: settings.backgroundColor,
+                    isLeftSide: false,
                   ),
                 )
                 : (_currentPageIndex == 1)
@@ -58,7 +59,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                         child: Text(
                           'Ban',
                           style: TextStyle(
-                            color: settings.isEnglish ? Colors.white : Colors.greenAccent,
+                            color: settings.isEnglish ? Colors.white : Colors.green[600],
                             fontSize: 10,
                             fontWeight: settings.isEnglish ? FontWeight.normal : FontWeight.bold,
                           ),
@@ -106,7 +107,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                             child: Text(
                               'Eng',
                               style: TextStyle(
-                                color: settings.isEnglish ? Colors.greenAccent : Colors.white,
+                                color: settings.isEnglish ? Colors.green[600] : Colors.white,
                                 fontSize: 10,
                                 fontWeight: settings.isEnglish ? FontWeight.bold : FontWeight.normal,
                               ),
@@ -123,6 +124,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       settings.setFontColor(color);
                     },
                     selectedColor: settings.fontColor,
+                    isLeftSide: true,
                   ),
                 )
                     : (_currentPageIndex == 3)
@@ -133,6 +135,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       settings.setComplicationColor(color);
                     },
                     selectedColor: settings.complicationColor,
+                    isLeftSide: true,
                   ),
                 )
                     : const SizedBox(width: 10), // placeholder if none
