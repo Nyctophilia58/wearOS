@@ -204,10 +204,10 @@ class _WatchFaceState extends State<WatchFace> {
                         color: settings.complicationColor,
                       ),
                       Text(
-                        convertText(
+                        "${convertText(
                           _batteryLevel.toString(),
                           settings.isEnglish,
-                        ),
+                        )}%",
                         style: TextStyle(
                           color: settings.fontColor,
                           fontSize: 12,
