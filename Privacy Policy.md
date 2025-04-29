@@ -7,6 +7,6 @@ This Wear OS watch face app does not collect, store, or share any personal infor
 - No user information is shared with third parties.
 - The app operates fully offline and requires no user account or permissions.
 
-If you have any questions about this policy, you may contact us at: [your-email@example.com]
+If you have any questions about this policy, you may contact us at: nowtechdev@gmail.com
 
-Effective Date: [YYYY-MM-DD]
+Effective Date: 29-04-2025
